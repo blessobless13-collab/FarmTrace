@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FarmTrace | Farm to Table</title><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/"><span class="brand-icon">🌱</span><span>Farm<span class="brand-accent">Trace</span><small>FROM FARM TO TABLE</small></span></a>
+  <nav><a class="active" href="/">Dashboard</a><a href="#batches">Batches</a><a href="#create">Add batch</a></nav>
+  <span class="live-pill"><i></i> Tracking system</span>
+</header>
+<main class="container">
+  <section class="hero">
+    <div><span class="eyebrow">FRESHNESS WITH TRANSPARENCY</span><h1>Every vegetable has<br><em>a story.</em></h1>
+      <p>Follow your produce from the farm to the table. One scan gives everyone a clearer journey.</p>
+      <div class="hero-actions"><a class="btn btn-primary" href="#create">＋ Add a vegetable batch</a><a class="btn btn-light" href="#batches">View tracking records ↗</a></div>
+    </div>
+    <div class="hero-art"><div class="sun"></div><div class="hill hill-back"></div><div class="hill hill-front"></div><div class="produce">🥬 🥕 🍅</div><div class="art-label"><span>🌿</span><div><b>Farm to table</b><small>Trace every step</small></div></div></div>
+  </section>
+
+  <section class="stats">
+    <article class="stat-card"><span class="stat-icon">📦</span><span class="stat-label">TOTAL BATCHES</span><strong id="stat-total">—</strong><small>Recorded in FarmTrace</small></article>
+    <article class="stat-card"><span class="stat-icon">🚚</span><span class="stat-label">IN TRANSIT</span><strong id="stat-transit">—</strong><small>Currently on the way</small></article>
+    <article class="stat-card"><span class="stat-icon">🏪</span><span class="stat-label">DELIVERED / AT SHOP</span><strong id="stat-delivered">—</strong><small>Reached the shop or customer</small></article>
+    <article class="stat-card"><span class="stat-icon">🧑‍🌾</span><span class="stat-label">FARMERS</span><strong id="stat-farmers">—</strong><small>Unique farmer names recorded</small></article>
+  </section>
+
+  <section class="content-grid">
+    <div class="panel" id="create">
+      <div class="section-heading"><div><span class="eyebrow">START A JOURNEY</span><h2>Add a new batch</h2></div><span class="round-icon">＋</span></div>
+      <p class="muted">Create a unique ID and QR code for a crate of vegetables.</p>
+      <form id="batch-form" class="form-grid">
+        <label>Vegetable name<input name="vegetable" placeholder="e.g. Tomato" required></label>
+        <label>Farmer name or role<input name="farmer" placeholder="e.g. Farmer 1" required></label>
+        <label class="full">Farm / starting location<input name="farm" placeholder="e.g. Green Valley Farm" required></label>
+        <label class="full">Quantity<input name="quantity" placeholder="e.g. 1 crate / 10 kg" value="1 crate"></label>
+        <button class="btn btn-primary full" type="submit">Create batch & QR code <span>→</span></button>
+      </form>
+      <div id="form-message" class="message" role="status"></div>
+    </div>
+
+    <div class="panel qr-panel">
+      <div class="section-heading"><div><span class="eyebrow">SCAN TO DISCOVER</span><h2>Batch QR code</h2></div><span class="round-icon">▦</span></div>
+      <p class="muted">Select a batch from the list to display its customer tracking QR.</p>
+      <div id="qr-placeholder" class="qr-placeholder"><span>▦</span><b>Your QR appears here</b><small>Create or select a batch first</small></div>
+      <div id="qr-result" class="qr-result hidden"><img id="qr-image" alt="QR code for batch tracking"><b id="qr-batch-id"></b><a id="qr-open" target="_blank" rel="noreferrer">Open public tracking page ↗</a><button id="qr-download" class="btn btn-light" type="button">Download QR PNG ↓</button></div>
+    </div>
+  </section>
+
+  <section class="panel batches-panel" id="batches">
+    <div class="section-heading batches-heading"><div><span class="eyebrow">YOUR PRODUCE</span><h2>Recent batches</h2><p class="muted">Choose a batch to view its QR or update its journey.</p></div><button class="btn btn-light" id="refresh-btn" type="button">↻ Refresh</button></div>
+    <div class="table-wrap"><table><thead><tr><th>BATCH / VEGETABLE</th><th>FARMER & FARM</th><th>STATUS</th><th>JOURNEY</th><th>ACTION</th></tr></thead><tbody id="batch-rows"><tr><td colspan="5" class="empty">Loading batches…</td></tr></tbody></table></div>
+    <div id="empty-state" class="empty-state hidden"><div>🌾</div><b>No batches yet</b><p>Create your first batch above, or load the example data to explore.</p><button id="seed-btn" class="btn btn-primary" type="button">Load demo tomato journey</button></div>
+  </section>
+  <footer><a class="brand footer-brand" href="/">🌱 Farm<span class="brand-accent">Trace</span></a><span>Student prototype · Farm to Table tracking</span><button id="seed-link" class="text-button" type="button">Load demo data</button></footer>
+</main>
+<div id="toast" class="toast" role="status"></div>
+<script src="/app.js"></script>
+</body></html>
