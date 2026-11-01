@@ -155,7 +155,7 @@ app.get("/api", (_req, res) => res.redirect("/index.html"));
 
 async function start() {
   try {
-    await mongoose.connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/farmtrace");
+    await mongoose.connect(process.env.MONGO_URI ||);
     console.log("MongoDB connected");
   } catch (err) {
     console.error("MongoDB connection failed:", err.message);
